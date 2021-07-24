@@ -16,7 +16,7 @@ namespace Pidev_front.Controllers
         public CategoryController()
         {
             httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("http://localhost:8081/SpringMVC/");
+            httpClient.BaseAddress = new Uri("http://localhost:8080/");
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
