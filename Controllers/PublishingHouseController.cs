@@ -9,59 +9,61 @@ using System.Web.Mvc;
 
 namespace Pidev_front.Controllers
 {
-    public class CategoryController : Controller
+    public class PublishingHouseController : Controller
+
+
+
     {
         HttpClient httpClient;
 
-        public CategoryController()
+
+        public PublishingHouseController()
         {
             httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("http://localhost:8080/");
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        // GET: Category
+        // GET: PublishingHouse
         public ActionResult Index()
         {
-            var response = httpClient.GetAsync("get-all-categories").Result;
-        
+            var response = httpClient.GetAsync("get-all-PublishingHouses").Result;
+
             if (response.IsSuccessStatusCode)
             {
-                var categories = response.Content.ReadAsAsync<IList<Category>>().Result;
-                return View(categories);
+                var publishingHouses = response.Content.ReadAsAsync<IList<PublishingHouse>>().Result;
+                return View(publishingHouses);
             }
             else
             {
-                return View(new List<Category>());
-            }   
+                return View(new List<PublishingHouse>());
+            }
         }
 
-        // GET: Category/Details/5
+        // GET: PublishingHouse/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Category/Create
+        // GET: PublishingHouse/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Category/Create
+        // POST: PublishingHouse/Create
         [HttpPost]
-        public ActionResult Create(Category category)
+        public ActionResult Create(PublishingHouse publishingHouse)
         {
             try
             {
-                category.Id = null ;
-                Console.WriteLine("LOG");
-
-                var response = httpClient.PostAsJsonAsync("add-category", category).ContinueWith(task =>
+                publishingHouse.Id = null;
+                var response = httpClient.PostAsJsonAsync("add-PublishingHouse", publishingHouse).ContinueWith(task =>
 
                 {
- 
-                    
+
+
                     if (task.Result.IsSuccessStatusCode)
                     {
                         var result = task.Result.Content.ReadAsStringAsync();
@@ -70,7 +72,7 @@ namespace Pidev_front.Controllers
                     {
                         task.Result.EnsureSuccessStatusCode();
                     }
-                    
+
                 });
                 return RedirectToAction("Index");
             }
@@ -80,16 +82,14 @@ namespace Pidev_front.Controllers
             }
         }
 
-        // GET: Category/Edit/5
+        // GET: PublishingHouse/Edit/5
         public ActionResult Edit(int id)
         {
-
-
-            var response = httpClient.GetAsync("category-by-id/"+id.ToString()).Result;
+            var response = httpClient.GetAsync("get-PublishingHouses-by-id/" + id.ToString()).Result;
             if (response.IsSuccessStatusCode)
             {
-                var categories = response.Content.ReadAsAsync<Category>().Result;
-                return View(categories);
+                var publishingHouse = response.Content.ReadAsAsync<PublishingHouse>().Result;
+                return View(publishingHouse);
             }
             else
             {
@@ -97,14 +97,14 @@ namespace Pidev_front.Controllers
             }
         }
 
-        // POST: Category/Edit/5
+        // POST: PublishingHouse/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Category category)
+        public ActionResult Edit(int id, PublishingHouse publishingHouse)
         {
             try
             {
 
-                var response = httpClient.PutAsJsonAsync("update-category/"+id.ToString(), category).ContinueWith(task =>
+                var response = httpClient.PutAsJsonAsync("update-PublishingHouse/" + id.ToString(), publishingHouse).ContinueWith(task =>
                 {
                     if (task.Result.IsSuccessStatusCode)
                     {
@@ -123,30 +123,28 @@ namespace Pidev_front.Controllers
             }
         }
 
-        // GET: Category/Delete/5
+        // GET: PublishingHouse/Delete/5
         public ActionResult Delete(int id)
         {
-
-            var response = httpClient.GetAsync("category-by-id/" + id.ToString()).Result;
+            var response = httpClient.GetAsync("get-PublishingHouses-by-id/" + id.ToString()).Result;
             if (response.IsSuccessStatusCode)
             {
-                var categories = response.Content.ReadAsAsync<Category>().Result;
-                return View(categories);
+                var publishingHouses = response.Content.ReadAsAsync<PublishingHouse>().Result;
+                return View(publishingHouses);
             }
             else
             {
-                return View(new Category());
+                return View(new PublishingHouse());
             }
         }
 
-        // POST: Category/Delete/5
+        // POST: PublishingHouse/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id,Category category)
+        public ActionResult Delete(int id, PublishingHouse publishingHouse)
         {
             try
             {
-
-                var response = httpClient.DeleteAsync("remove-category/" + id.ToString()).ContinueWith(task =>
+                var response = httpClient.DeleteAsync("remove-PublishingHouse/" + id.ToString()).ContinueWith(task =>
                 {
                     if (task.Result.IsSuccessStatusCode)
                     {
