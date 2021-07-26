@@ -5,73 +5,67 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Mvc;
-
-
 namespace Pidev_front.Controllers
 {
-    public class CategoryController : Controller
+    public class AuthorController : Controller
     {
         HttpClient httpClient;
 
-        public CategoryController()
+        public AuthorController()
         {
             httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("http://localhost:8080/");
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
-
-        // GET: Category
+        // GET: Author
         public ActionResult Index()
         {
-            var response = httpClient.GetAsync("get-all-categories").Result;
-        
+            var response = httpClient.GetAsync("get_allAuthors").Result;
+
             if (response.IsSuccessStatusCode)
             {
-                var categories = response.Content.ReadAsAsync<IList<Category>>().Result;
-                return View(categories);
+                var authors = response.Content.ReadAsAsync<IList<Author>>().Result;
+                return View(authors);
             }
             else
             {
-                return View(new List<Category>());
-            }   
+                return View(new List<Author>());
+            }
         }
 
-        // GET: Category/Details/5
+        // GET: Author/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Category/Create
+
+        // GET: Author/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Category/Create
+        // POST: Author/Create
         [HttpPost]
-        public ActionResult Create(Category category)
+        public ActionResult Create(Author author)
         {
             try
             {
-                category.Id = null ;
-                Console.WriteLine("LOG");
+                author.Id = null;
+                var response = httpClient.PostAsJsonAsync("add_Author", author).ContinueWith(task =>
 
-                var response = httpClient.PostAsJsonAsync("add-category", category).ContinueWith(task =>
+             {
+                 if (task.Result.IsSuccessStatusCode)
+                 {
+                     var result = task.Result.Content.ReadAsStringAsync();
+                 }
+                 else
+                 {
+                     task.Result.EnsureSuccessStatusCode();
+                 }
 
-                {
- 
-                    
-                    if (task.Result.IsSuccessStatusCode)
-                    {
-                        var result = task.Result.Content.ReadAsStringAsync();
-                    }
-                    else
-                    {
-                        task.Result.EnsureSuccessStatusCode();
-                    }
-                    
-                });
+             });
                 return RedirectToAction("Index");
             }
             catch
@@ -80,31 +74,28 @@ namespace Pidev_front.Controllers
             }
         }
 
-        // GET: Category/Edit/5
+        // GET: Author/Edit/5
         public ActionResult Edit(int id)
         {
-
-
-            var response = httpClient.GetAsync("category-by-id/"+id.ToString()).Result;
+            var response = httpClient.GetAsync("author/" + id.ToString()).Result;
             if (response.IsSuccessStatusCode)
             {
-                var categories = response.Content.ReadAsAsync<Category>().Result;
-                return View(categories);
+                var author = response.Content.ReadAsAsync<Author>().Result;
+                return View(author);
             }
             else
             {
-                return View(new Category());
+                return View(new Author());
             }
         }
 
-        // POST: Category/Edit/5
+        // POST: Author/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Category category)
+        public ActionResult Edit(int id, Author author)
         {
             try
             {
-
-                var response = httpClient.PutAsJsonAsync("update-category/"+id.ToString(), category).ContinueWith(task =>
+                var response = httpClient.PutAsJsonAsync("update-Author/" + id.ToString(), author).ContinueWith(task =>
                 {
                     if (task.Result.IsSuccessStatusCode)
                     {
@@ -123,30 +114,29 @@ namespace Pidev_front.Controllers
             }
         }
 
-        // GET: Category/Delete/5
+        // GET: Author/Delete/5
         public ActionResult Delete(int id)
         {
-
-            var response = httpClient.GetAsync("category-by-id/" + id.ToString()).Result;
+            var response = httpClient.GetAsync("author/" + id.ToString()).Result;
             if (response.IsSuccessStatusCode)
             {
-                var categories = response.Content.ReadAsAsync<Category>().Result;
-                return View(categories);
+                var author = response.Content.ReadAsAsync<Author>().Result;
+                return View(author);
             }
             else
             {
-                return View(new Category());
+                return View(new Author());
             }
         }
 
-        // POST: Category/Delete/5
+        // POST: Author/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id,Category category)
+        public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
 
-                var response = httpClient.DeleteAsync("remove-category/" + id.ToString()).ContinueWith(task =>
+                var response = httpClient.DeleteAsync("remove-Author/" + id.ToString()).ContinueWith(task =>
                 {
                     if (task.Result.IsSuccessStatusCode)
                     {
@@ -164,5 +154,6 @@ namespace Pidev_front.Controllers
                 return View();
             }
         }
+
     }
 }
