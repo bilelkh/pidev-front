@@ -36,9 +36,23 @@ namespace Pidev_front.Controllers
         }
 
         // GET: Coupon/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string CouponCode)
         {
-            return View();
+            if (CouponCode is null)
+            {
+                throw new ArgumentNullException(nameof(CouponCode));
+            }
+
+            var response = httpClient.GetAsync("?coupon=" + CouponCode).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var categories = response.Content.ReadAsAsync<Coupon>().Result;
+                return View(categories);
+            }
+            else
+            {
+                return View(new Coupon());
+            }
         }
 
         // GET: Coupon/Create
