@@ -4,20 +4,20 @@
     ViewBag.Title = "index";
 }
 
-<h2>index</h2>
+<h2>Authors management</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add New", "Create", null, new { @class = "btn btn-success  glyphicon-plus" })
 </p>
-<table class="table">
+<table class="table table-striped">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            Firstname
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            Lastname
         </th>
-    
+
         <th>
             @Html.DisplayNameFor(model => model.CreatedAt)
         </th>
@@ -27,28 +27,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.FirstName)
-    </td>
-    <a href="~/Views/Author/edit.cshtml">~/Views/Author/edit.cshtml</a>
-    <a href="~/Views/Author/edit.cshtml">~/Views/Author/edit.cshtml</a>
-    <td>
-        @Html.DisplayFor(modelItem => item.LastName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CreatedAt)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.UpdatedAt)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "edit", new { id = item.Id }) |
-        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-    </td>
-</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedAt)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary glyphicon glyphicon-edit" })
+                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-default glyphicon glyphicon-info" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })
+            </td>
+        </tr>
+    }
 
 </table>

@@ -5,9 +5,45 @@
 }
 
 <h2>Add New Book</h2>
+<script>
 
+
+    function exportData () {
+        var raw = "";
+
+        var requestOptions = {
+            method: 'GET',
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("http://localhost:8080/export", { responseType: "blob" })
+            .then(response => response.text())
+            .then(result => { downloadFile(new Blob([result], { type: "application/pdf" }), "myfile.pdf") })
+            .catch(error => console.log('error', error));
+    }
+
+
+    const downloadFile = (blob, fileName) => {
+        const link = document.createElement('a');
+        // create a blobURI pointing to our Blob
+        link.href = URL.createObjectURL(blob);
+        link.download = fileName;
+        // some browser needs the anchor to be in the doc
+        document.body.append(link);
+        link.click();
+        link.remove();
+        // in case the Blob uses a lot of memory
+        setTimeout(() => URL.revokeObjectURL(link.href), 7000);
+    };
+
+
+  
+</script>
 <p>
     @Html.ActionLink("Add New", "Create", null, new { @class = "btn btn-success  glyphicon-plus" })
+
+    <button onclick="exportData()" class="btn btn-primary glyphicon glyphicon-circle-arrow-down">Export</button>
 </p>
 <table class="table table-striped">
     <tr>
