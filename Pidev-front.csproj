@@ -155,6 +155,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\PublishingHouseController.cs" />
+    <Compile Include="Controllers\StatistiqueController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -270,6 +271,7 @@
     <Content Include="Views\PublishingHouse\delete.cshtml" />
     <Content Include="Views\Book\index.cshtml" />
     <Content Include="Views\Book\create.cshtml" />
+    <Content Include="Views\Statistique\index.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Order\New.cshtml" />
     <Content Include="Views\Order\Ongoing.cshtml" />
