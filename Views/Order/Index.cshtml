@@ -1,14 +1,20 @@
 ﻿@model IEnumerable<Pidev_front.Models.Order>
+<div>
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("New Orders", "New", "Order")</li>
+                    <li>@Html.ActionLink("Ongoing Orders", "Ongoing", "Order")</li>
+                    <li>@Html.ActionLink("Delivered Orders", "Delivered", "Order")</li>
+                    <li>@Html.ActionLink("All Orders", "Index", "Order")</li>
+                    <li>@Html.ActionLink("Orders statistics", "Index", "Order")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -18,7 +24,7 @@
             @Html.DisplayNameFor(model => model.AddressId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Status)
+            @Html.DisplayNameFor(model => model.Coupon)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CreatedAt)
@@ -26,32 +32,58 @@
         <th>
             @Html.DisplayNameFor(model => model.UpdatedAt)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AddressId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedAt)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddressId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Coupon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdatedAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    <div>
+                        @using (Html.BeginForm("UpdateStatus", "Order", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <input name="orderId" id="orderId" value="@item.Id" hidden/>
+                            <select id="selectedValue" name="selectedValue">
+                                @foreach (var value in @EnumHelper<Pidev_front.Models.OrderStatus>.GetValues(Pidev_front.Models.OrderStatus.NEW))
+                                {
+                                    var description = EnumHelper<Pidev_front.Models.OrderStatus>.GetDisplayValue(value);
+                                    <option>@Html.DisplayFor(e => description)</option>
+                                }
+                            </select>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="UpdateStatus" class="btn btn-default" id="form-submit"/>
+                                </div>
+                            </div>
+                        }
+                        </div>
+                </td>
+            </tr>
+    }
 
 </table>
