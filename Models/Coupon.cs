@@ -49,7 +49,7 @@ namespace Pidev_front.Models
         Global,
         [Display(Name = "Unique")]
         Unique,
-        [Display(Name = "UniquePerUser")]
+        [Display(Name = "UPU")]
         UniquePerUser
     }
 
