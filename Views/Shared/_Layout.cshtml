@@ -15,31 +15,27 @@
 
 <style>
     .navbar {
-        background: rgb(2, 0, 36);
-        background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
-        color: black;
+        font-size: 14px;
+        background-color: #282A35;
+        color: #f1f1f1;
+        width: 100%;
+        padding: 0;
+        letter-spacing: 1px;
+        font-family: 'Source Sans Pro', sans-serif;
+       
     }
 
-    .navbar-inverse .navbar-nav>li>a {
-        color: #ff5656;
-        font-size: 15px;
-        font-family: 'Roboto', sans-serif;
+    .container-fluid {
+        padding-left: 315px !important;
     }
+ 
 </style>
 
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Bibliophile", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
+        <div class="container-fluid">
                 <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Bibliophile", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
                     <li>@Html.ActionLink("Book list", "Index", "Book")</li>
                     <li>@Html.ActionLink("Promotion list", "Index", "Promotion")</li>
                     <li>@Html.ActionLink("Categories list", "Index", "Category")</li>
@@ -50,7 +46,6 @@
                     <li>@Html.ActionLink("Order Managment", "Index", "Order")</li>
                 </ul>
             </div>
-        </div>
     </div>
     <div class="container body-content">
         @RenderBody()
