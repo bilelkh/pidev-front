@@ -1,41 +1,51 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mon application ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+
 </head>
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+<style>
+    .navbar {
+        font-size: 14px;
+        background-color: #282A35;
+        color: #f1f1f1;
+        width: 100%;
+        padding: 0;
+        letter-spacing: 1px;
+        font-family: 'Source Sans Pro', sans-serif;
+       
+    }
+
+    .container-fluid {
+        padding-left: 315px !important;
+    }
+ 
+</style>
+
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <img src="~/assets/logo.png" width="40px" height="" title="title" alt="additional title" />
-
-                @Html.ActionLink("Bibliophile", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
+        <div class="container-fluid">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Bibliophile", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
                     <li>@Html.ActionLink("Book list", "Index", "Book")</li>
-                    <li>@Html.ActionLink("Promotion list", "Index", "Category")</li>
+                    <li>@Html.ActionLink("Promotion list", "Index", "Promotion")</li>
                     <li>@Html.ActionLink("Categories list", "Index", "Category")</li>
                     <li>@Html.ActionLink("Authors list", "Index", "Author")</li>
                     <li>@Html.ActionLink("Publishing House List", "Index", "PublishingHouse")</li>
                     <li>@Html.ActionLink("statistics", "Index", "Statistique")</li>
                     <li>@Html.ActionLink("Coupon Managment", "Index", "Coupons")</li>
                     <li>@Html.ActionLink("Order Managment", "Index", "Order")</li>
-
                 </ul>
             </div>
-        </div>
     </div>
     <div class="container body-content">
         @RenderBody()
@@ -49,4 +59,5 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
+
 </html>

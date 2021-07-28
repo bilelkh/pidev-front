@@ -154,6 +154,7 @@
     <Compile Include="Controllers\CouponsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\PromotionController.cs" />
     <Compile Include="Controllers\PublishingHouseController.cs" />
     <Compile Include="Controllers\StatistiqueController.cs" />
     <Compile Include="Global.asax.cs">
@@ -166,10 +167,14 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Coupon.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Promotion.cs" />
     <Compile Include="Models\PublishingHouse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\image1.jpg" />
+    <Content Include="assets\image2.jpg" />
+    <Content Include="assets\image3.jpg" />
     <Content Include="assets\logo.png" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -273,6 +278,8 @@
     <Content Include="Views\Book\index.cshtml" />
     <Content Include="Views\Book\create.cshtml" />
     <Content Include="Views\Statistique\index.cshtml" />
+    <Content Include="Views\Promotion\index.cshtml" />
+    <Content Include="Views\Promotion\create.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Order\New.cshtml" />
     <Content Include="Views\Order\Ongoing.cshtml" />

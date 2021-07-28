@@ -26,12 +26,6 @@ namespace Pidev_front.Controllers
         public ActionResult Index()
         {
 
-            //For first dropdown:
-
-          
-
-
-
             var response = httpClient.GetAsync("get-all-books").Result;
         
             if (response.IsSuccessStatusCode)

@@ -4,8 +4,37 @@
     ViewBag.Title = "index";
 }
 
+<style>
+    h2 {
+        color: black;
+        font-size: 40px;
+        text-decoration: underline;
+    }
+
+    .btn {
+        border-radius: 0px;
+    }
+</style>
+
 <h2>Authors management</h2>
 
+    <script type='text/javascript'>
+
+        (function()
+{
+  if( window.localStorage )
+  {
+    if( !localStorage.getItem('firstLoad') )
+    {
+            localStorage['firstLoad'] = true;
+      window.location.reload();
+    }
+    else
+      localStorage.removeItem('firstLoad');
+  }
+})();
+
+</script>
 <p>
     @Html.ActionLink("Add New", "Create", null, new { @class = "btn btn-success  glyphicon-plus" })
 </p>

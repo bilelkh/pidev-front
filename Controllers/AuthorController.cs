@@ -66,12 +66,15 @@ namespace Pidev_front.Controllers
                  }
 
              });
-                return RedirectToAction("Index");
+          
+              
             }
             catch
             {
                 return View();
             }
+
+            return RedirectToAction("Index");
         }
 
         // GET: Author/Edit/5

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Pidev_front.Models.Promotion>
+
+
+<style>
+
+</style>
+<h2>List of books</h2>
+
+<p>
+    @Html.ActionLink("Add New", "Create", null, new { @class = "btn btn-success  glyphicon-plus" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.startDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.endDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.createdAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.updatedAt)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.startDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.endDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.createdAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.updatedAt)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-primary glyphicon glyphicon-edit" })
+                @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-default glyphicon glyphicon-info" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })
+            </td>
+        </tr>
+    }
+
+</table>
