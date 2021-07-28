@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
@@ -13,22 +14,19 @@
 <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
 <style>
-
-
     .navbar {
-        background: rgb(2,0,36);
-        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+        background: rgb(2, 0, 36);
+        background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
         color: black;
     }
 
-    .navbar-inverse .navbar-nav > li > a {
+    .navbar-inverse .navbar-nav>li>a {
         color: #ff5656;
         font-size: 15px;
         font-family: 'Roboto', sans-serif;
     }
-
-  
 </style>
+
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -48,9 +46,8 @@
                     <li>@Html.ActionLink("Authors list", "Index", "Author")</li>
                     <li>@Html.ActionLink("Publishing House List", "Index", "PublishingHouse")</li>
                     <li>@Html.ActionLink("statistics", "Index", "Statistique")</li>
-
-
-
+                    <li>@Html.ActionLink("Coupon Managment", "Index", "Coupons")</li>
+                    <li>@Html.ActionLink("Order Managment", "Index", "Order")</li>
                 </ul>
             </div>
         </div>
@@ -67,4 +64,5 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
+
 </html>

@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Pidev_front.Models.Order>
+<style>
+    .nav-center {
+        display: flex !important;
+        justify-content: center;
+    }
+
+    .center-action {
+        display: flex !important;
+        justify-content: center;
+    }
+</style>
+
+<div style="margin-top: 75px;">
+    <div class="navbar navbar-inverse ">
+        <div class="container nav-center">
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav text-center">
+                    <li>@Html.ActionLink("New Orders", "New", "Order")</li>
+                    <li>@Html.ActionLink("Ongoing Orders", "Ongoing", "Order")</li>
+                    <li>@Html.ActionLink("Delivered Orders", "Delivered", "Order")</li>
+                    <li>@Html.ActionLink("All Orders", "Index", "Order")</li>
+                    <li>@Html.ActionLink("Orders statistics", "Stats", "Order")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AddressId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Coupon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdatedAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddressId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Coupon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <div class="">
+                    @using (Html.BeginForm("UpdateStatus", "Order", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input name="orderId" id="orderId" value="@item.Id" hidden />
+                        <div class="center-action">
+                            <select id="selectedValue" name="selectedValue" class="form-control">
+                                @foreach (var value in @EnumHelper<Pidev_front.Models.OrderStatus>.GetValues(Pidev_front.Models.OrderStatus.NEW))
+                                {
+                                    var description = EnumHelper<Pidev_front.Models.OrderStatus>.GetDisplayValue(value);
+                                    <option>@Html.DisplayFor(e => description)</option>
+                                }
+                            </select>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="UpdateStatus" class="btn btn-primary" id="form-submit" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </td>
+        </tr>
+    }
+
+</table>

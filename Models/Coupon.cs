@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -40,12 +41,16 @@ namespace Pidev_front.Models
 
         [JsonProperty("updatedAt")]
         public DateTime? UpdatedAt { get; set; }
-
     }
 
     public enum CouponType
     {
-        Global, Unique, UniquePerUser
+        [Display(Name = "Global")]
+        Global,
+        [Display(Name = "Unique")]
+        Unique,
+        [Display(Name = "UniquePerUser")]
+        UniquePerUser
     }
 
 }

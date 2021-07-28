@@ -34,5 +34,83 @@ namespace Pidev_front.Controllers
                 return View(new List<Order>());
             }
         }
+
+        public ActionResult New()
+        {
+            var response = httpClient.GetAsync("new").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var orders = response.Content.ReadAsAsync<IList<Order>>().Result;
+                return View(orders);
+            }
+            else
+            {
+                return View(new List<Order>());
+            }
+        }
+
+
+        public ActionResult Ongoing()
+        {
+            var response = httpClient.GetAsync("ongoing").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var orders = response.Content.ReadAsAsync<IList<Order>>().Result;
+                return View(orders);
+            }
+            else
+            {
+                return View(new List<Order>());
+            }
+        }
+
+
+        public ActionResult Delivered()
+        {
+            var response = httpClient.GetAsync("delivered").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var orders = response.Content.ReadAsAsync<IList<Order>>().Result;
+                return View(orders);
+            }
+            else
+            {
+                return View(new List<Order>());
+            }
+        }
+
+
+        public ActionResult Stats()
+        {
+            var response = httpClient.GetAsync("stats").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var orderStats = response.Content.ReadAsAsync<OrderStats>().Result;
+                return View(orderStats);
+            }
+            else
+            {
+                return View();
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult UpdateStatus(Order order)
+        {
+
+            string id = (string)Request.Form["orderId"];
+            string status = (string)Request.Form["selectedValue"];
+
+            var response = httpClient.PutAsJsonAsync("update-status/"+id+"/"+status, order).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
     }
 }
