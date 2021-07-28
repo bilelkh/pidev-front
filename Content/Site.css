@@ -34,3 +34,14 @@ img{
     margin-top : 20px !important ;
 
 }
+}
+
+.nav-center {
+    display: flex !important;
+    justify-content: center;
+}
+
+.center-action {
+    display: flex !important;
+    justify-content: center;
+}

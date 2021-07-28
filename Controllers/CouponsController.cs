@@ -23,16 +23,41 @@ namespace Pidev_front.Controllers
         // GET: Coupon
         public ActionResult Index()
         {
-            var response = httpClient.GetAsync("all").Result;
+            List<SelectListItem> userOptionList = new List<SelectListItem>();
+            List<SelectListItem> couponOptionList = new List<SelectListItem>();
+
+            var response = httpClient.GetAsync("/user/all").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var users = response.Content.ReadAsAsync<IList<User>>().Result;
+                foreach (var c in users)
+                {
+                    userOptionList.Add(new SelectListItem
+                    {
+                        Text = c.FirstName,
+                        Value = c.Id.ToString()
+                    });
+                }
+            }
+
+            response = httpClient.GetAsync("all").Result;
             if (response.IsSuccessStatusCode)
             {
                 var categories = response.Content.ReadAsAsync<IList<Coupon>>().Result;
+                foreach (var c in categories)
+                {
+                    couponOptionList.Add(new SelectListItem
+                    {
+                        Text = c.CouponCode,
+                        Value = c.CouponCode
+                    });
+                }
+                ViewBag.userOptionList = userOptionList;
+                ViewBag.couponOptionList = couponOptionList;
                 return View(categories);
             }
-            else
-            {
-                return View(new List<Coupon>());
-            }
+
+            return View();
         }
 
         // GET: Coupon/Details/5
@@ -46,8 +71,8 @@ namespace Pidev_front.Controllers
             var response = httpClient.GetAsync("?coupon=" + CouponCode).Result;
             if (response.IsSuccessStatusCode)
             {
-                var categories = response.Content.ReadAsAsync<Coupon>().Result;
-                return View(categories);
+                var coupon = response.Content.ReadAsAsync<Coupon>().Result;
+                return View(coupon);
             }
             else
             {

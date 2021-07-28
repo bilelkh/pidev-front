@@ -160,6 +160,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\EnumHelpers.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Category.cs" />
@@ -276,6 +277,7 @@
     <Content Include="Views\Order\New.cshtml" />
     <Content Include="Views\Order\Ongoing.cshtml" />
     <Content Include="Views\Order\Delivered.cshtml" />
+    <Content Include="Views\Order\Stats.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

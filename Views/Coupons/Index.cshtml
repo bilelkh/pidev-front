@@ -4,10 +4,18 @@
     ViewBag.Title = "Index";
 }
 
+<style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        border-radius: 5px; /* 5px rounded corners */
+    }
+</style>
+
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success  glyphicon-plus" })
 </p>
 <table class="table">
     <tr>
@@ -27,6 +35,9 @@
             @Html.DisplayNameFor(model => model.IsPercentage)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Active)
         </th>
         <th>
@@ -41,41 +52,101 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CouponCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Discount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsPercentage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Active)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AppliedWithPromo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedAt)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { CouponCode = item.CouponCode }) |
-            @Html.ActionLink("Details", "Details", new { CouponCode = item.CouponCode }) |
-            @Html.ActionLink("Delete", "Delete", new { CouponCode = item.CouponCode })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.CouponCode)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StartDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EndDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Discount)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.IsPercentage)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Type)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Active)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AppliedWithPromo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CreatedAt)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.UpdatedAt)
+    </td>
+    <td>
+        <div style="display: flex; flex-direction: column;">
+            @Html.ActionLink("Edit", "Edit", new { CouponCode = item.CouponCode }, new { @class = "btn btn-primary  glyphicon-plus" })
+            @Html.ActionLink("Details", "Details", new { CouponCode = item.CouponCode }, new { @class = "btn btn-primary  glyphicon-plus" })
+            @Html.ActionLink("Delete", "Delete", new { CouponCode = item.CouponCode }, new { @class = "btn btn-primary  glyphicon-plus" })
+        </div>
+    </td>
+</tr>
+    }
 
 </table>
+
+
+<div style=" display: flex; flex-direction: column; align-items: stretch; padding: 1em; width:30%;" class="card">
+    <h1>
+        Coupon Simulation
+    </h1>
+    <div class="form-group">
+        <label>amount:</label>
+        <input type="text" class="form-control" name="amount" id="amount" placeholder="100">
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            User
+        </label>
+        <div class="col-md-10">
+            @Html.DropDownList("User", new SelectList(ViewBag.userOptionList, "Value", "Text"))
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            Coupon
+        </label>
+        <div class="col-md-10">
+            @Html.DropDownList("Coupon", new SelectList(ViewBag.couponOptionList, "Value", "Text"))
+        </div>
+    </div>
+    <div style="display:flex; flex-direction: column;" class="col-md-10 form-group">
+        <input id="new" placeholder="new amount" disabled />
+        <input id="old" placeholder="old amount" disabled />
+        <input id="error" placeholder="err" disabled />
+    </div>
+    <div class="col-md-offset-2 col-md-10">
+        <div class="btn btn-success" onclick="applyCoupon()">Simulate</div>
+    </div>
+
+
+<script>
+    function applyCoupon() {
+        var user = $("#User").val();
+        var coupon = $("#Coupon").val();
+        var amount = $("#amount").val();
+        $("#new").val("");
+        $("#old").val("");
+        $("#error").val("");
+        console.log(amount, coupon, user);
+        fetch(`http://localhost:8080/order/apply-coupon?coupon=${coupon}&user=${user}&amount=${amount}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                for ([key, value] of Object.entries(data)) {
+                   $(`#${key}`).val(value)
+                }});
+    }
+</script>

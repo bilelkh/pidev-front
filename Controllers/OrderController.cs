@@ -79,6 +79,22 @@ namespace Pidev_front.Controllers
             }
         }
 
+
+        public ActionResult Stats()
+        {
+            var response = httpClient.GetAsync("stats").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var orderStats = response.Content.ReadAsAsync<OrderStats>().Result;
+                return View(orderStats);
+            }
+            else
+            {
+                return View();
+            }
+
+        }
+
         [HttpPost]
         public ActionResult UpdateStatus(Order order)
         {

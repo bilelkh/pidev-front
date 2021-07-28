@@ -50,5 +50,27 @@ namespace Pidev_front.Models
         CANCELED
     }
 
+    public class OrderStats
+    {
+        [JsonProperty("countNew")]
+        public int? CountNew { get; set; }
+
+        [JsonProperty("countDelivered")]
+        public int? CountDelivered { get; set; }
+
+        [JsonProperty("countShipping")]
+        public int? CountShipping { get; set; }
+        
+        [JsonProperty("countCanceled")]
+        public int? countCanceled { get; set; }
+       
+        [JsonProperty("countProcessing")]
+        public int? countProcessing { get; set; }
+        [JsonProperty("countOrders")]
+        public int? countOrders { get; set; }
+
+        [JsonProperty("countCouponIsApplied")]
+        public int? countCouponIsApplied { get; set; }
+    }
 
 }
