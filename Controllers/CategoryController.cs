@@ -55,8 +55,6 @@ namespace Pidev_front.Controllers
             try
             {
                 category.Id = null ;
-                Console.WriteLine("LOG");
-
                 var response = httpClient.PostAsJsonAsync("add-category", category).ContinueWith(task =>
 
                 {
