@@ -13,17 +13,14 @@ namespace Pidev_front.Models
         [JsonProperty("id")]
         public int? Id { get; set; }
 
-        [JsonProperty("userId")]
-        public string UserId { get; set; }
-
-        [JsonProperty("addressId")]
-        public string AddressId { get; set; }
+        [JsonProperty("user")]
+        public User User { get; set; }
 
         [JsonProperty("books")]
         public ISet<Book> Books { get; set; }
 
         [JsonProperty("coupon")]
-        public int Coupon { get; set; }
+        public Coupon Coupon { get; set; }
 
         [JsonProperty("status")]
         public OrderStatus Status { get; set; }
