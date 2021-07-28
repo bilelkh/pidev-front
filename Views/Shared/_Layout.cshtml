@@ -83,7 +83,7 @@
             box-sizing: border-box;
         }
 
-        input[type=submit] {
+/*        input[type=submit] {
             width: 28%;
             background-color: #888888;
             color: white;
@@ -91,7 +91,7 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-        }
+        }*/
 
             input[type=submit]:hover {
                 background-color: #A1AEB7;
@@ -99,6 +99,12 @@
 
         div .forrm {
             border-radius: 5px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
 
         /* ------------------------------- */
@@ -125,9 +131,11 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
+    </div>
 
-        <div class="row footer-rowtop ">
+    <footer class="container" style="width: 100%">
+        <hr />
+        @*<div class="row footer-rowtop  ">
 
             <div class="col-sm-2 footer-links">
                 <h4>Solutions</h4>
@@ -175,13 +183,12 @@
                 <div class="forrm">
                     <form action="/action_page.php">
                         <input type="text" id="fname" name="firstname" placeholder="Enter Email">
-                        <input type="submit" value="Sign Up">
+                        <input type="submit" value="Sign Up" class="btn btn-success">
                     </form>
                 </div>
 
             </div>
-        </div>
-
+        </div>*@
 
         <div class="row footer-rowbottom">
 
@@ -199,7 +206,7 @@
                 <br />© All Stars. 2021| <a href="#">Privacy Policy</a>
             </div>
         </div>
-    </div>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
