@@ -12,47 +12,193 @@
 
 </head>
 <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 <style>
-    .navbar {
-        font-size: 14px;
-        background-color: #282A35;
-        color: #f1f1f1;
-        width: 100%;
-        padding: 0;
-        letter-spacing: 1px;
-        font-family: 'Source Sans Pro', sans-serif;
-       
-    }
+        .navbar {
+            font-size: 14px;
+            background-color: #282A35;
+            color: #f1f1f1;
+            width: 100%;
+            padding: 0;
+            letter-spacing: 1px;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
 
-    .container-fluid {
-        padding-left: 315px !important;
-    }
- 
+        .container-fluid {
+            padding-left: 315px !important;
+        }
+
+        /* ⚠️ Warning! ⚠️
+       SOME CSS IS BEING REFERENCED IN THE SETTINGS
+       BE SURE TO REFERENCE BOOSTRAP 3
+       BE SURE TO REFERENCE HOVER.CSS
+       CHECK CODEPEN SETTINGS > HTML & CSS TABS
+    */
+
+        .footer h4 {
+            font-weight: 600;
+            padding-bottom: 10px;
+            color: #2D2D2D;
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: #888888;
+        }
+
+            .footer a:hover {
+                color: #EE4466;
+            }
+
+        .footer-rowtop {
+            padding: 40px 20px;
+            color: #888888;
+        }
+
+        .footer-rowbottom {
+            padding: 30px 20px;
+            background: #F3F3F3;
+            color: #888888;
+        }
+
+        .footer-links {
+            line-height: 24px;
+        }
+
+        .footer-social-icons {
+            padding-right: 15px;
+        }
+
+        /* CSS for Form Field */
+        /* ------------------------------- */
+
+        input[type=text], select {
+            width: 70%;
+            padding: 8px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            width: 28%;
+            background-color: #888888;
+            color: white;
+            padding: 9px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            input[type=submit]:hover {
+                background-color: #A1AEB7;
+            }
+
+        div .forrm {
+            border-radius: 5px;
+        }
+
+        /* ------------------------------- */
+
+
+
 </style>
 
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Bibliophile", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                    <li>@Html.ActionLink("Book list", "Index", "Book")</li>
-                    <li>@Html.ActionLink("Promotion list", "Index", "Promotion")</li>
-                    <li>@Html.ActionLink("Categories list", "Index", "Category")</li>
-                    <li>@Html.ActionLink("Authors list", "Index", "Author")</li>
-                    <li>@Html.ActionLink("Publishing House List", "Index", "PublishingHouse")</li>
-                    <li>@Html.ActionLink("statistics", "Index", "Statistique")</li>
-                    <li>@Html.ActionLink("Coupon Managment", "Index", "Coupons")</li>
-                    <li>@Html.ActionLink("Order Managment", "Index", "Order")</li>
-                </ul>
-            </div>
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Bibliophile", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                <li>@Html.ActionLink("Book list", "Index", "Book")</li>
+                <li>@Html.ActionLink("Promotion list", "Index", "Promotion")</li>
+                <li>@Html.ActionLink("Categories list", "Index", "Category")</li>
+                <li>@Html.ActionLink("Authors list", "Index", "Author")</li>
+                <li>@Html.ActionLink("Publishing House List", "Index", "PublishingHouse")</li>
+                <li>@Html.ActionLink("statistics", "Index", "Statistique")</li>
+                <li>@Html.ActionLink("Coupon Managment", "Index", "Coupons")</li>
+                <li>@Html.ActionLink("Order Managment", "Index", "Order")</li>
+            </ul>
+        </div>
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mon application ASP.NET</p>
-        </footer>
+
+        <div class="row footer-rowtop ">
+
+            <div class="col-sm-2 footer-links">
+                <h4>Solutions</h4>
+                <a href="#">For Employers</a>
+                <br />
+                <a href="#">For Partners</a>
+                <br />
+                <a href="#">Pricing</a>
+                <br />
+            </div>
+
+            <div class="col-sm-2 footer-links">
+                <h4>Resources</h4>
+                <a href="#">Library</a>
+                <br />
+                <a href="#">News</a>
+                <br />
+                <a href="#">Events</a>
+                <br />
+            </div>
+
+            <div class="col-sm-2 footer-links">
+                <h4>Company</h4>
+                <a href="#">About</a>
+                <br />
+                <a href="#">Contact</a>
+                <br />
+                <a href="#">Careers</a>
+                <br />
+            </div>
+
+            <div class="col-sm-2 footer-links">
+                <h4>Support</h4>
+                <a href="#">Privacy</a>
+                <br />
+                <a href="#">Security</a>
+                <br />
+                <a href="#">Help Center</a>
+                <br />
+            </div>
+
+            <div class="col-sm-4 footer-links">
+                <h4>Newsletter:</h4>
+                Benefits, News, and Trends right to your inbox.
+                <div class="forrm">
+                    <form action="/action_page.php">
+                        <input type="text" id="fname" name="firstname" placeholder="Enter Email">
+                        <input type="submit" value="Sign Up">
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="row footer-rowbottom">
+
+            <div class="col-sm-4">
+                <i class="fab fa-facebook-square fa-3x "></i>
+                <i class="fab fa-linkedin fa-3x"></i>
+                <i class="fab fa-twitter-square fa-3x"></i>
+                <i class="fab fa-instagram fa-3x"></i>
+            </div>
+
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-4">
+                <br />© All Stars. 2021| <a href="#">Privacy Policy</a>
+            </div>
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
